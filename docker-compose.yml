@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  postgres:
+    image: bitnami/postgresql:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=notes
+      - POSTGRES_PASSWORD=notes
+      - POSTGRES_DB=rocketnotes
+    volumes:
+      - rocketnotes_pg_data:/bitnami/postgresql
+
+volumes:
+  rocketnotes_pg_data:
