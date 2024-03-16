@@ -42,7 +42,7 @@ model Tag {
   noteId String
   userId String
 
-  Note Note @relation(fields: [noteId], references: [id])
+  Note Note @relation(fields: [noteId], references: [id], onDelete: Cascade)
   User User @relation(fields: [userId], references: [id])
 
   @@map("tag")
@@ -54,7 +54,7 @@ model Link {
   createdAt DateTime @default(now())
   noteId    String?
 
-  Note Note? @relation(fields: [noteId], references: [id])
+  Note Note? @relation(fields: [noteId], references: [id], onDelete: Cascade)
 
   @@map("link")
 }

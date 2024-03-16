@@ -16,3 +16,6 @@ route.use(authApp);
 
 route.put("/users", UserController.update);
 route.get("/users", UserController.show);
+
+route.get("/notes", NotesController.index);
+route.post("/notes", NotesController.store);
