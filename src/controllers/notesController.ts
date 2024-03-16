@@ -54,9 +54,9 @@ class NotesController {
     const { id } = req.params;
     const userId = req.userId;
 
-    const note = await notesRepository.delete({ userId, id });
+    await notesRepository.delete({ userId, id });
 
-    return res.status(201).json(note);
+    return res.status(201).json({ message: 'Nota Deletada' });
   }
 }
 

@@ -115,14 +115,12 @@ class NotesRepository {
   }
 
   async delete({ userId, id }: Find) {
-    const deletingNote = await prisma.note.delete({
+    return await prisma.note.delete({
         where: {
             userId,
             id
         }
     })
-
-    return deletingNote ? true : false
   }
 }
 
