@@ -19,3 +19,5 @@ route.get("/users", UserController.show);
 
 route.get("/notes", NotesController.index);
 route.post("/notes", NotesController.store);
+route.delete("/notes/:id", NotesController.delete);
+route.get("/notes/:id", NotesController.show);

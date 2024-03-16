@@ -9,9 +9,10 @@ interface Note {
 }
 
 type Find = {
-  id: string;
-  title: string;
-  tags: string;
+  id?: string;
+  userId?: string,
+  title?: string;
+  tags?: string;
 };
 
 class NotesRepository {
@@ -52,7 +53,21 @@ class NotesRepository {
     return { message: "Nota Criada" };
   }
 
-  async findById() {}
+  async findById({ userId, id }: Find) {
+    const note = prisma.note.findUnique({
+        where: {
+            userId,
+            id
+        },
+        include: {
+            links: true,
+            tags: true,
+            user: true
+        }
+    })
+
+    return note
+  }
 
   async findAll({ id, title, tags }: Find) {
     let notes;
@@ -99,7 +114,16 @@ class NotesRepository {
     return notes;
   }
 
-  async delete() {}
+  async delete({ userId, id }: Find) {
+    const deletingNote = await prisma.note.delete({
+        where: {
+            userId,
+            id
+        }
+    })
+
+    return deletingNote ? true : false
+  }
 }
 
 export default new NotesRepository();
